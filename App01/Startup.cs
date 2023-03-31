@@ -18,7 +18,7 @@ namespace App01
             app.Use(async (context, next) =>
             {
                 // Add Header
-                context.Response.Headers["Product"] = "Api for MySQL Database v1.2";
+                context.Response.Headers["Product"] = "Api for MySQL Database v1.0.0.6";
 
                 // Call next middleware
                 await next.Invoke();
@@ -42,6 +42,11 @@ namespace App01
             config.Routes.MapHttpRoute(
                 name: "Api-3",
                 routeTemplate: "api/{controller}/{name}/{Datefrom}/{Dateto}",
+                defaults: new { id = RouteParameter.Optional }
+                );
+            config.Routes.MapHttpRoute(
+                name: "Api-4",
+                routeTemplate: " ",
                 defaults: new { id = RouteParameter.Optional }
                 );
 
