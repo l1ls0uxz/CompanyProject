@@ -46,7 +46,7 @@ namespace App01
                 );
             config.Routes.MapHttpRoute(
                 name: "Api-4",
-                routeTemplate: " ",
+                routeTemplate: "api/",
                 defaults: new { id = RouteParameter.Optional }
                 );
 

@@ -1,6 +1,6 @@
 ﻿/* Author: Lil s0uxz
  * Github profile: https://github.com/lils0uxz
- * Version: beta-1.0.1
+ * Version: beta-1.0.0.6
  */
 
 using System;

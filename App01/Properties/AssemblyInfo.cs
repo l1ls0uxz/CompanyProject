@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("App01")]
-[assembly: AssemblyDescription("Connect to JP server to show databse & export to excel file.")]
+[assembly: AssemblyTitle("HondaplusVN App")]
+[assembly: AssemblyDescription("Connect to database and export to excel file.")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("HondaplusVN")]
-[assembly: AssemblyProduct("App01")]
+[assembly: AssemblyProduct("HondaplusVN App")]
 [assembly: AssemblyCopyright("Copyright ©  2023 by Lil s0uxz")] // Link to the author: https://github.com/lils0uxz
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

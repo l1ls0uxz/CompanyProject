@@ -21,5 +21,11 @@ namespace App01
         {
             Application.Exit();
         }
+
+        private void btnAbout_Click(object sender, EventArgs e)
+        {
+            About about = new About();
+            about.Show();
+        }
     }
 }
