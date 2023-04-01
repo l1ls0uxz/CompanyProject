@@ -19,7 +19,9 @@ namespace App01
 
         private void btnExit_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+            this.Close();
+            LoginForm loginForm = new LoginForm();
+            loginForm.Show();
         }
 
         private void btnAbout_Click(object sender, EventArgs e)
