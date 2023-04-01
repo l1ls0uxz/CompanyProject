@@ -47,5 +47,10 @@ namespace App01
                );
             dtView.Text = Helper.BeautifyJson(responce);
         }
+
+        private void dtView_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

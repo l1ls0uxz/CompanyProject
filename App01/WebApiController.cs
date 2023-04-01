@@ -20,6 +20,22 @@ namespace App01
         string datareturn;
         string connStr = "server=127.0.0.1;user=root;database=demohmiconnectpc1;port=3306;password=0546";
 
+        // check table exists
+        public bool IsTableExists(string tableName)
+        {
+            using (MySqlConnection conn = new MySqlConnection(connStr))
+            {
+                conn.Open();
+                string query = "SELECT COUNT(*) FROM information_schema.tables WHERE table_schema = @dbName AND table_name = @tableName";
+                MySqlCommand cmd = new MySqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@dbName", "demohmiconnectpc1"); // Replace "myDatabase" with the name of your database (already changed)
+                cmd.Parameters.AddWithValue("@tableName", tableName);
+
+                int count = Convert.ToInt32(cmd.ExecuteScalar());
+                return count > 0;
+            }
+        }
+
         // GET api/webapi/name
         [Route("api/{controller}/{name}")]
         //[GzipCompressionAtribute]
@@ -73,6 +89,12 @@ namespace App01
         [Route("api/{controller}/{name}/{datetfrom}/{dateto}")]
         public string GetDate(string name, string datefrom, string dateto)
         {
+            // check if table exists
+            if (!IsTableExists(name))
+            {
+                return "Table does not exist in the Database.";
+            }
+            // continues to execute
             string query = "select DateTime from " + $"{name}" + " where DateTime between " + $"{datefrom}" + "and " + $"{dateto}";
 
             DataTable table = new DataTable();
@@ -82,7 +104,7 @@ namespace App01
                 mycon.Open();
                 using (MySqlCommand myCommand = new MySqlCommand(query, mycon))
                 {
-                    myReader = myCommand.ExecuteReader();
+                    myReader = myCommand.ExecuteReader();   
                     table.Load(myReader);
                     myReader.Close();
                     mycon.Close();
