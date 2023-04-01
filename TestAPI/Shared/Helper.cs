@@ -6,14 +6,14 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
-using App01;
+using TestAPI;
 
-namespace App01.Shared
+namespace TestAPI.Shared
 {
     public static class Helper
     {
         private static readonly string baseURl = "http://localhost:55555/api/webapi/";
-        public static async Task<string> GetDate(string name, string datefrom, string dateto)
+        public static async Task<string> GetAll(string name, string datefrom, string dateto)
         {
 
             using (HttpClient client = new HttpClient(new HttpClientHandler

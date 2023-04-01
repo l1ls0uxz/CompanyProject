@@ -52,10 +52,11 @@
             this.btnLogin.Location = new System.Drawing.Point(60, 253);
             this.btnLogin.Name = "btnLogin";
             this.btnLogin.Size = new System.Drawing.Size(147, 45);
-            this.btnLogin.TabIndex = 0;
+            this.btnLogin.TabIndex = 3;
             this.btnLogin.Text = "Login";
             this.btnLogin.UseVisualStyleBackColor = true;
             this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click_1);
+            this.btnLogin.KeyDown += new System.Windows.Forms.KeyEventHandler(this.enter);
             // 
             // btnExit
             // 
@@ -66,7 +67,7 @@
             this.btnExit.Location = new System.Drawing.Point(273, 253);
             this.btnExit.Name = "btnExit";
             this.btnExit.Size = new System.Drawing.Size(147, 45);
-            this.btnExit.TabIndex = 1;
+            this.btnExit.TabIndex = 4;
             this.btnExit.Text = "Exit";
             this.btnExit.UseVisualStyleBackColor = true;
             this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
@@ -77,7 +78,7 @@
             this.txtUser.Location = new System.Drawing.Point(116, 127);
             this.txtUser.Name = "txtUser";
             this.txtUser.Size = new System.Drawing.Size(304, 45);
-            this.txtUser.TabIndex = 2;
+            this.txtUser.TabIndex = 1;
             // 
             // txtPass
             // 
@@ -85,7 +86,7 @@
             this.txtPass.Location = new System.Drawing.Point(116, 183);
             this.txtPass.Name = "txtPass";
             this.txtPass.Size = new System.Drawing.Size(304, 45);
-            this.txtPass.TabIndex = 3;
+            this.txtPass.TabIndex = 2;
             this.txtPass.UseSystemPasswordChar = true;
             // 
             // pictureBox1

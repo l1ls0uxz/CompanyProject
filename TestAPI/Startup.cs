@@ -8,7 +8,7 @@ using MySql.Data.MySqlClient;
 using System.Web.Http;
 //using System.Web.UI.WebControls;
 
-namespace App01
+namespace TestAPI
 {
     public class Startup
     {
@@ -18,7 +18,7 @@ namespace App01
             app.Use(async (context, next) =>
             {
                 // Add Header
-                context.Response.Headers["Product"] = "Api for MySQL Database v1.0.0.6";
+                context.Response.Headers["Product"] = "Api for MySQL Database v1.0.0.7 -beta build: 017";
 
                 // Call next middleware
                 await next.Invoke();
@@ -36,7 +36,7 @@ namespace App01
                );
             config.Routes.MapHttpRoute(
                 name: "Api-2",
-                routeTemplate: "api/{controller}/{name}/{id}",
+                routeTemplate: "api/{controller}/{name}/{date}",
                 defaults: new { id = RouteParameter.Optional }
              );
             config.Routes.MapHttpRoute(

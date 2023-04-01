@@ -70,5 +70,10 @@ namespace App01
                 }
             }
         }
+
+        private void enter(object sender, KeyEventArgs e)
+        {
+
+        }
     }
 }

@@ -10,9 +10,9 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web.Http.Results;
-using App01.Filters;
+using TestAPI.Filters;
 
-namespace App01
+namespace TestAPI
 {
     public class WebApiController : ApiController
     {
@@ -50,30 +50,6 @@ namespace App01
         public string GetItemByNameAndId(string name, int id)
         {
             string query = "select * from " + $"{name}" + " where id = " + $"{id}";
-
-            DataTable table = new DataTable();
-            MySqlDataReader myReader;
-            using (MySqlConnection mycon = new MySqlConnection(connStr))
-            {
-                mycon.Open();
-                using (MySqlCommand myCommand = new MySqlCommand(query, mycon))
-                {
-                    myReader = myCommand.ExecuteReader();
-                    table.Load(myReader);
-                    myReader.Close();
-                    mycon.Close();
-                }
-            }
-
-            datareturn = JsonConvert.SerializeObject(table);
-            return datareturn;
-        }
-
-        // GET api/webapi/name/datefrom/dateto
-        [Route("api/{controller}/{name}/{datetfrom}/{dateto}")]
-        public string GetDate(string name, string datefrom, string dateto)
-        {
-            string query = "select DateTime from " + $"{name}" + " where DateTime between " + $"{datefrom}" + "and " + $"{dateto}";
 
             DataTable table = new DataTable();
             MySqlDataReader myReader;

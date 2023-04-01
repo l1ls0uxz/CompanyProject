@@ -5,12 +5,12 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("HondaplusVN App")]
-[assembly: AssemblyDescription("Connect to database and export to excel file.")]
+[assembly: AssemblyTitle("TestAPI")]
+[assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("HondaplusVN")]
-[assembly: AssemblyProduct("HondaplusVN App")]
-[assembly: AssemblyCopyright("Copyright ©  2023 by Lil s0uxz")] // Link to the author: https://github.com/lils0uxz
+[assembly: AssemblyCompany("")]
+[assembly: AssemblyProduct("TestAPI")]
+[assembly: AssemblyCopyright("Copyright ©  2023")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("01d24588-29bb-4b9c-8f6e-6163c3590c3c")]
+[assembly: Guid("fd5e177d-4603-4078-81df-2a5eb4a27d73")]
 
 // Version information for an assembly consists of the following four values:
 //
@@ -32,5 +32,5 @@ using System.Runtime.InteropServices;
 // You can specify all the values or you can default the Build and Revision Numbers
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("1.0.0.7")]
-[assembly: AssemblyFileVersion("1.0.0.7")]
+[assembly: AssemblyVersion("1.0.0.0")]
+[assembly: AssemblyFileVersion("1.0.0.0")]

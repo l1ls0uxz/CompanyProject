@@ -16,7 +16,7 @@ namespace App01
     class Database
     {
         // connect to mysql database
-        private MySqlConnection connection = new MySqlConnection("server=127.0.0.1;port=3306;username=root;password=0546;database=demohmiconnectpc");
+        private MySqlConnection connection = new MySqlConnection("server=127.0.0.1;port=3306;username=root;password=0546;database=demohmiconnectpc1");
 
 
         // create a function to open the connection
