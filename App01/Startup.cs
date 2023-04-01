@@ -18,7 +18,7 @@ namespace App01
             app.Use(async (context, next) =>
             {
                 // Add Header
-                context.Response.Headers["Product"] = "Api for MySQL Database v1.0.0.6";
+                context.Response.Headers["Product"] = "Api for MySQL Database v1.0.1.1 -beta build: 020";
 
                 // Call next middleware
                 await next.Invoke();

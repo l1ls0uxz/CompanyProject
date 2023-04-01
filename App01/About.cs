@@ -16,7 +16,7 @@ namespace App01
             InitializeComponent();
             this.Text = String.Format("About {0}", AssemblyTitle);
             this.labelProductName.Text ="Product: " + AssemblyProduct;
-            this.labelVersion.Text = String.Format("Version: {0}", AssemblyVersion + " -beta" + " build: 017" + " (01/04/2023)");
+            this.labelVersion.Text = String.Format("Version: {0}", AssemblyVersion + " -beta" + " build: 020" + " (01/04/2023)");
             this.labelCopyright.Text = AssemblyCopyright;
             this.labelCompanyName.Text = "Company: " + AssemblyCompany;
             this.textBoxDescription.Text = AssemblyDescription;
