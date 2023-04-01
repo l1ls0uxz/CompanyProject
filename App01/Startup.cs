@@ -49,6 +49,11 @@ namespace App01
                 routeTemplate: "api/",
                 defaults: new { id = RouteParameter.Optional }
                 );
+            config.Routes.MapHttpRoute(
+                name: "Api-5",
+                routeTemplate: "api/",
+                defaults: new { id = RouteParameter.Optional }
+                );
 
             // Web Api
             app.UseWebApi(config);
