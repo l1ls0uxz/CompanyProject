@@ -38,7 +38,7 @@ namespace App01
             about.Show();
         }
 
-        private async void btnExcel_Click(object sender, EventArgs e)
+        private async void btnGET_Click(object sender, EventArgs e)
         {
             var responce = await Helper.GetDate(
                cbxName.Text.ToString(),

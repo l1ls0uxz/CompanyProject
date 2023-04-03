@@ -11,6 +11,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web.Http.Results;
 using App01.Filters;
+using Mysqlx.Crud;
 
 namespace App01
 {
@@ -37,55 +38,56 @@ namespace App01
         }
 
         // GET api/webapi/name
-        [Route("api/{controller}/{name}")]
-        //[GzipCompressionAtribute]
-        public string GetItemByName(string name)
-        {
+        //[Route("api/{controller}/{name}")]
+        ////[GzipCompressionAtribute]
+        //public string GetItemByName(string name)
+        //{
 
-            string query = "select * from " + $"{name}";
+        //    string query = "select * from " + $"{name}";
 
-            DataTable table = new DataTable();
-            MySqlDataReader myReader;
-            using (MySqlConnection mycon = new MySqlConnection(connStr))
-            {
-                mycon.Open();
-                using (MySqlCommand myCommand = new MySqlCommand(query, mycon))
-                {
-                    myReader = myCommand.ExecuteReader();
-                    table.Load(myReader);
-                    myReader.Close();
-                    mycon.Close();
-                }
-            }
-            datareturn = JsonConvert.SerializeObject(table);
-            return datareturn;
-        }
+        //    DataTable table = new DataTable();
+        //    MySqlDataReader myReader;
+        //    using (MySqlConnection mycon = new MySqlConnection(connStr))
+        //    {
+        //        mycon.Open();
+        //        using (MySqlCommand myCommand = new MySqlCommand(query, mycon))
+        //        {
+        //            myReader = myCommand.ExecuteReader();
+        //            table.Load(myReader);
+        //            myReader.Close();
+        //            mycon.Close();
+        //        }
+        //    }
+        //    datareturn = JsonConvert.SerializeObject(table);
+        //    return datareturn;
+        //}
 
         // GET api/webapi/name/id
-        [Route("api/{controller}/{name}/{id}")]
-        public string GetItemByNameAndId(string name, int id)
-        {
-            string query = "select * from " + $"{name}" + " where id = " + $"{id}";
+        //[Route("api/{controller}/{name}/{id}")]
+        //public string GetItemByNameAndId(string name, int id)
+        //{
+        //    string query = "select * from " + $"{name}" + " where id = " + $"{id}";
 
-            DataTable table = new DataTable();
-            MySqlDataReader myReader;
-            using (MySqlConnection mycon = new MySqlConnection(connStr))
-            {
-                mycon.Open();
-                using (MySqlCommand myCommand = new MySqlCommand(query, mycon))
-                {
-                    myReader = myCommand.ExecuteReader();
-                    table.Load(myReader);
-                    myReader.Close();
-                    mycon.Close();
-                }
-            }
+        //    DataTable table = new DataTable();
+        //    MySqlDataReader myReader;
+        //    using (MySqlConnection mycon = new MySqlConnection(connStr))
+        //    {
+        //        mycon.Open();
+        //        using (MySqlCommand myCommand = new MySqlCommand(query, mycon))
+        //        {
+        //            myReader = myCommand.ExecuteReader();
+        //            table.Load(myReader);
+        //            myReader.Close();
+        //            mycon.Close();
+        //        }
+        //    }
 
-            datareturn = JsonConvert.SerializeObject(table);
-            return datareturn;
-        }
+        //    datareturn = JsonConvert.SerializeObject(table);
+        //    return datareturn;
+        //}
 
         // GET api/webapi/name/datefrom/dateto
+
         [Route("api/{controller}/{name}/{datetfrom}/{dateto}")]
         public string GetDate(string name, string datefrom, string dateto)
         {
@@ -95,8 +97,7 @@ namespace App01
                 return "Table does not exist in the Database.";
             }
             // continues to execute
-            string query = "select DateTime from " + $"{name}" + " where DateTime between " + $"{datefrom}" + "and " + $"{dateto}";
-
+            string query = "select * from " + $"{name}" + " where DateTime between " + $"{datefrom}" + "and " + $"{dateto}" + " order by DateTime desc";
             DataTable table = new DataTable();
             MySqlDataReader myReader;
             using (MySqlConnection mycon = new MySqlConnection(connStr))

@@ -31,14 +31,16 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.btnExit = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnAbout = new System.Windows.Forms.Button();
             this.cbxName = new System.Windows.Forms.ComboBox();
             this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
-            this.btnExcel = new System.Windows.Forms.Button();
-            this.btnAbout = new System.Windows.Forms.Button();
+            this.btnGET = new System.Windows.Forms.Button();
             this.dtView = new System.Windows.Forms.RichTextBox();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.btnExport = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -64,6 +66,18 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(984, 37);
             this.panel1.TabIndex = 1;
+            // 
+            // btnAbout
+            // 
+            this.btnAbout.Image = ((System.Drawing.Image)(resources.GetObject("btnAbout.Image")));
+            this.btnAbout.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnAbout.Location = new System.Drawing.Point(779, 3);
+            this.btnAbout.Name = "btnAbout";
+            this.btnAbout.Size = new System.Drawing.Size(98, 29);
+            this.btnAbout.TabIndex = 5;
+            this.btnAbout.Text = "About";
+            this.btnAbout.UseVisualStyleBackColor = true;
+            this.btnAbout.Click += new System.EventHandler(this.btnAbout_Click);
             // 
             // cbxName
             // 
@@ -105,42 +119,32 @@
             this.dateTimePicker1.TabIndex = 2;
             this.dateTimePicker1.Value = new System.DateTime(2023, 4, 1, 10, 33, 15, 0);
             // 
-            // btnExcel
+            // btnGET
             // 
-            this.btnExcel.Image = ((System.Drawing.Image)(resources.GetObject("btnExcel.Image")));
-            this.btnExcel.Location = new System.Drawing.Point(784, 4);
-            this.btnExcel.Name = "btnExcel";
-            this.btnExcel.Size = new System.Drawing.Size(75, 64);
-            this.btnExcel.TabIndex = 4;
-            this.btnExcel.UseVisualStyleBackColor = true;
-            this.btnExcel.Click += new System.EventHandler(this.btnExcel_Click);
-            // 
-            // btnAbout
-            // 
-            this.btnAbout.Image = ((System.Drawing.Image)(resources.GetObject("btnAbout.Image")));
-            this.btnAbout.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAbout.Location = new System.Drawing.Point(779, 3);
-            this.btnAbout.Name = "btnAbout";
-            this.btnAbout.Size = new System.Drawing.Size(98, 29);
-            this.btnAbout.TabIndex = 5;
-            this.btnAbout.Text = "About";
-            this.btnAbout.UseVisualStyleBackColor = true;
-            this.btnAbout.Click += new System.EventHandler(this.btnAbout_Click);
+            this.btnGET.Image = ((System.Drawing.Image)(resources.GetObject("btnGET.Image")));
+            this.btnGET.Location = new System.Drawing.Point(801, 4);
+            this.btnGET.Name = "btnGET";
+            this.btnGET.Size = new System.Drawing.Size(106, 64);
+            this.btnGET.TabIndex = 4;
+            this.btnGET.UseVisualStyleBackColor = true;
+            this.btnGET.Click += new System.EventHandler(this.btnGET_Click);
             // 
             // dtView
             // 
             this.dtView.Location = new System.Drawing.Point(12, 43);
             this.dtView.Name = "dtView";
-            this.dtView.Size = new System.Drawing.Size(960, 178);
+            this.dtView.Size = new System.Drawing.Size(960, 378);
             this.dtView.TabIndex = 2;
             this.dtView.Text = "";
             this.dtView.TextChanged += new System.EventHandler(this.dtView_TextChanged);
             // 
             // panel2
             // 
-            this.panel2.Controls.Add(this.btnExport);
+            this.panel2.Controls.Add(this.label3);
+            this.panel2.Controls.Add(this.label2);
+            this.panel2.Controls.Add(this.label1);
             this.panel2.Controls.Add(this.cbxName);
-            this.panel2.Controls.Add(this.btnExcel);
+            this.panel2.Controls.Add(this.btnGET);
             this.panel2.Controls.Add(this.dateTimePicker1);
             this.panel2.Controls.Add(this.dateTimePicker2);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
@@ -149,14 +153,35 @@
             this.panel2.Size = new System.Drawing.Size(984, 71);
             this.panel2.TabIndex = 3;
             // 
-            // btnExport
+            // label1
             // 
-            this.btnExport.Image = ((System.Drawing.Image)(resources.GetObject("btnExport.Image")));
-            this.btnExport.Location = new System.Drawing.Point(883, 3);
-            this.btnExport.Name = "btnExport";
-            this.btnExport.Size = new System.Drawing.Size(75, 64);
-            this.btnExport.TabIndex = 5;
-            this.btnExport.UseVisualStyleBackColor = true;
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(57, 45);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(55, 13);
+            this.label1.TabIndex = 5;
+            this.label1.Text = "Machine";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(246, 45);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(57, 13);
+            this.label2.TabIndex = 6;
+            this.label2.Text = "Day from";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(521, 45);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(44, 13);
+            this.label3.TabIndex = 7;
+            this.label3.Text = "Day to";
             // 
             // MainForm
             // 
@@ -174,6 +199,7 @@
             this.Text = "Main";
             this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -182,13 +208,15 @@
 
         private System.Windows.Forms.Button btnExit;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Button btnExcel;
+        private System.Windows.Forms.Button btnGET;
         private System.Windows.Forms.Button btnAbout;
         private System.Windows.Forms.ComboBox cbxName;
         public System.Windows.Forms.DateTimePicker dateTimePicker2;
         public System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.RichTextBox dtView;
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Button btnExport;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label1;
     }
 }

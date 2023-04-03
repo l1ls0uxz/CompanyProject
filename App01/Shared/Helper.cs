@@ -38,54 +38,54 @@ namespace App01.Shared
             return string.Empty;
         }
 
-        public static async Task<string> GetTable(string name, string date)
-        {
+        //public static async Task<string> GetTable(string name, string date)
+        //{
 
-            using (HttpClient client = new HttpClient(new HttpClientHandler
-            {
-                AutomaticDecompression = System.Net.DecompressionMethods.GZip | System.Net.DecompressionMethods.Deflate
-            }))
-            {
-                using (HttpResponseMessage res = await client.GetAsync(baseURl + $"{name}" + $"/{date}"))
-                {
-                    using (HttpContent content = res.Content)
-                    {
-                        string data = await content.ReadAsStringAsync();
+        //    using (HttpClient client = new HttpClient(new HttpClientHandler
+        //    {
+        //        AutomaticDecompression = System.Net.DecompressionMethods.GZip | System.Net.DecompressionMethods.Deflate
+        //    }))
+        //    {
+        //        using (HttpResponseMessage res = await client.GetAsync(baseURl + $"{name}" + $"/{date}"))
+        //        {
+        //            using (HttpContent content = res.Content)
+        //            {
+        //                string data = await content.ReadAsStringAsync();
 
-                        if (data != null)
-                        {
+        //                if (data != null)
+        //                {
 
-                            return data;
-                        }
-                    }
-                }
-            }
-            return string.Empty;
-        }
+        //                    return data;
+        //                }
+        //            }
+        //        }
+        //    }
+        //    return string.Empty;
+        //}
 
-        public static async Task<string> GetDateTime(string name, string datereport, string time, bool check)
-        {
-            using (HttpClient client = new HttpClient(new HttpClientHandler
-            {
-                AutomaticDecompression = System.Net.DecompressionMethods.GZip | System.Net.DecompressionMethods.Deflate
-            }))
-            {
-                using (HttpResponseMessage res = await client.GetAsync(baseURl + $"{name}" + $"/{datereport}" + $"/{time}" + $"/'{check}'"))
-                {
-                    using (HttpContent content = res.Content)
-                    {
-                        string data = await content.ReadAsStringAsync();
+        //public static async Task<string> GetDateTime(string name, string datereport, string time, bool check)
+        //{
+        //    using (HttpClient client = new HttpClient(new HttpClientHandler
+        //    {
+        //        AutomaticDecompression = System.Net.DecompressionMethods.GZip | System.Net.DecompressionMethods.Deflate
+        //    }))
+        //    {
+        //        using (HttpResponseMessage res = await client.GetAsync(baseURl + $"{name}" + $"/{datereport}" + $"/{time}" + $"/'{check}'"))
+        //        {
+        //            using (HttpContent content = res.Content)
+        //            {
+        //                string data = await content.ReadAsStringAsync();
 
-                        if (data != null)
-                        {
+        //                if (data != null)
+        //                {
 
-                            return data;
-                        }
-                    }
-                }
-            }
-            return string.Empty;
-        }
+        //                    return data;
+        //                }
+        //            }
+        //        }
+        //    }
+        //    return string.Empty;
+        //}
 
         public static string BeautifyJson(string jsonStr)
         {

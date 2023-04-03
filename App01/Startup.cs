@@ -18,7 +18,7 @@ namespace App01
             app.Use(async (context, next) =>
             {
                 // Add Header
-                context.Response.Headers["Product"] = "Api for MySQL Database v1.0.1.1 -beta build: 020";
+                context.Response.Headers["Product"] = "Api for MySQL Database v1.0.1.3 -beta build: 022";
 
                 // Call next middleware
                 await next.Invoke();
@@ -31,27 +31,17 @@ namespace App01
             var config = new HttpConfiguration();
             config.Routes.MapHttpRoute(
                 name: "Api-1",
-                routeTemplate: "api/{controller}/{name}",
+                routeTemplate: "api/{controller}/",
                 defaults: new { id = RouteParameter.Optional }
                );
             config.Routes.MapHttpRoute(
                 name: "Api-2",
-                routeTemplate: "api/{controller}/{name}/{id}",
+                routeTemplate: "api/{controller}/",
                 defaults: new { id = RouteParameter.Optional }
              );
             config.Routes.MapHttpRoute(
                 name: "Api-3",
-                routeTemplate: "api/{controller}/{name}/{datefrom}/{dateto}",
-                defaults: new { id = RouteParameter.Optional }
-                );
-            config.Routes.MapHttpRoute(
-                name: "Api-4",
-                routeTemplate: "api/",
-                defaults: new { id = RouteParameter.Optional }
-                );
-            config.Routes.MapHttpRoute(
-                name: "Api-5",
-                routeTemplate: "api/",
+                routeTemplate: "api/{controller}/{name}/{datefrom}/{dateto}",   // this is the route is used in the app -MAIN ROUTE
                 defaults: new { id = RouteParameter.Optional }
                 );
 
