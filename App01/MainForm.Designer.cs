@@ -38,9 +38,9 @@
             this.btnGET = new System.Windows.Forms.Button();
             this.dtView = new System.Windows.Forms.RichTextBox();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -133,7 +133,7 @@
             // 
             this.dtView.Location = new System.Drawing.Point(12, 43);
             this.dtView.Name = "dtView";
-            this.dtView.Size = new System.Drawing.Size(960, 378);
+            this.dtView.Size = new System.Drawing.Size(960, 391);
             this.dtView.TabIndex = 2;
             this.dtView.Text = "";
             this.dtView.TextChanged += new System.EventHandler(this.dtView_TextChanged);
@@ -153,15 +153,15 @@
             this.panel2.Size = new System.Drawing.Size(984, 71);
             this.panel2.TabIndex = 3;
             // 
-            // label1
+            // label3
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(57, 45);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(55, 13);
-            this.label1.TabIndex = 5;
-            this.label1.Text = "Machine";
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(521, 45);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(44, 13);
+            this.label3.TabIndex = 7;
+            this.label3.Text = "Day to";
             // 
             // label2
             // 
@@ -173,15 +173,15 @@
             this.label2.TabIndex = 6;
             this.label2.Text = "Day from";
             // 
-            // label3
+            // label1
             // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(521, 45);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(44, 13);
-            this.label3.TabIndex = 7;
-            this.label3.Text = "Day to";
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(57, 45);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(55, 13);
+            this.label1.TabIndex = 5;
+            this.label1.Text = "Machine";
             // 
             // MainForm
             // 
