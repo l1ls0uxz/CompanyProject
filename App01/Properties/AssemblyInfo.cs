@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("HondaplusVN App")]
-[assembly: AssemblyDescription("Connect to database and export to excel file. If you encounter any errors while using the application, please send me an email with the details of the error to its.s0ux@gmail.com.")]
+[assembly: AssemblyDescription("Connect to database.")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("HondaplusVN")]
 [assembly: AssemblyProduct("HondaplusVN App")]
