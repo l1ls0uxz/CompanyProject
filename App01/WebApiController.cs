@@ -121,12 +121,12 @@ namespace App01
         {
         }
 
-        // PUT api/webapi/5 
+        // PUT api/webapi/1
         public void Put(int id, [FromBody] string value)
         {
         }
 
-        // DELETE api/webapi/5 
+        // DELETE api/webapi/1
         public void Delete(int id)
         {
         }

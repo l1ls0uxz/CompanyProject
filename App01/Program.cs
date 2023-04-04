@@ -16,7 +16,7 @@ namespace App01
         [STAThread]
         static void Main(string[] args)
         {
-            using (WebApp.Start<Startup>("http://localhost:55555"))
+            using (WebApp.Start<Startup>("http://192.168.1.26:55555"))
             {
                 Application.EnableVisualStyles();
                 Application.SetCompatibleTextRenderingDefault(false);
