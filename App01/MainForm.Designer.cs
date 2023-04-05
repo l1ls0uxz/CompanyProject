@@ -41,6 +41,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.btnMac = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -122,7 +123,7 @@
             // btnGET
             // 
             this.btnGET.Image = ((System.Drawing.Image)(resources.GetObject("btnGET.Image")));
-            this.btnGET.Location = new System.Drawing.Point(801, 4);
+            this.btnGET.Location = new System.Drawing.Point(757, 4);
             this.btnGET.Name = "btnGET";
             this.btnGET.Size = new System.Drawing.Size(106, 64);
             this.btnGET.TabIndex = 4;
@@ -140,6 +141,7 @@
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.btnMac);
             this.panel2.Controls.Add(this.label3);
             this.panel2.Controls.Add(this.label2);
             this.panel2.Controls.Add(this.label1);
@@ -183,6 +185,16 @@
             this.label1.TabIndex = 5;
             this.label1.Text = "Machine";
             // 
+            // btnMac
+            // 
+            this.btnMac.Location = new System.Drawing.Point(868, 4);
+            this.btnMac.Name = "btnMac";
+            this.btnMac.Size = new System.Drawing.Size(106, 64);
+            this.btnMac.TabIndex = 8;
+            this.btnMac.Text = "GET MAC";
+            this.btnMac.UseVisualStyleBackColor = true;
+            this.btnMac.Click += new System.EventHandler(this.btnMac_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -218,5 +230,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button btnMac;
     }
 }
