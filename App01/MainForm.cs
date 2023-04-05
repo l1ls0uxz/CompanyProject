@@ -60,6 +60,7 @@ namespace App01
             // Clear the RichTextBox
             dtView.Clear();
 
+            // Lấy chuỗi MAC đầu tiên của pc
             string mac = "";
             foreach (NetworkInterface nic in NetworkInterface.GetAllNetworkInterfaces())
             {
