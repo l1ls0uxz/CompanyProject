@@ -21,7 +21,7 @@ namespace App01
 {
     public partial class MainForm : Form
     {
-        string datareturn;
+        //string datareturn;
         public MainForm()
         {
             InitializeComponent();
@@ -42,6 +42,7 @@ namespace App01
 
         private async void btnGET_Click(object sender, EventArgs e)
         {
+            dtView.Clear();
             var responce = await Helper.GetDate(
                cbxName.Text.ToString(),
                dateTimePicker1.Value.ToString("yyyy-MM-dd HH:mm:ss"),

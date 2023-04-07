@@ -28,7 +28,9 @@ namespace TestForm
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            
+            this.Hide();
+            FormTest form2 = new FormTest();
+            form2.Show();
         }
 
         private void btnCreate_Click(object sender, EventArgs e)

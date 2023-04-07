@@ -18,7 +18,7 @@ namespace App01
             app.Use(async (context, next) =>
             {
                 // Add Header
-                context.Response.Headers["Product"] = "Api for MySQL Database v1.0.1.3 -beta build: 022";
+                context.Response.Headers["Product"] = "Api for MySQL Database v1.0.1.6 -beta build: 024";
 
                 // Call next middleware
                 await next.Invoke();
@@ -41,7 +41,22 @@ namespace App01
              );
             config.Routes.MapHttpRoute(
                 name: "Api-3",
-                routeTemplate: "api/{controller}/{name}/{datefrom}/{dateto}",   // this is the route is used in the app -MAIN ROUTE
+                routeTemplate: "api/{controller}/{name}/{datefrom}/{dateto}",   // this is the route is used in GetDate route
+                defaults: new { id = RouteParameter.Optional }
+                );
+            config.Routes.MapHttpRoute(
+                name: "Api-4",
+                routeTemplate: "api/{controller}/{ipAddress}",
+                defaults: new { controller = "MacAddress", ipAddress = RouteParameter.Optional } //controller = "MacAddress", ipAddress =
+                );
+            config.Routes.MapHttpRoute(
+                name: "Api-5",
+                routeTemplate: "api/{controller}/{name}/{username}/{password}", // this is the route is used in InsertUserAndToken route
+                defaults : new { id = RouteParameter.Optional }
+                );
+            config.Routes.MapHttpRoute(
+                name: "Api-6",
+                routeTemplate: "api/{controller}/{mac}/{username}",  // this is the route is used in PostMac route
                 defaults: new { id = RouteParameter.Optional }
                 );
 

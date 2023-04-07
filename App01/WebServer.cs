@@ -13,7 +13,7 @@ namespace App01
         private IDisposable _disposed;
         public void Start()
         {
-            _disposed = WebApp.Start<Startup>("http://192.168.1.26:55555");
+            _disposed = WebApp.Start<Startup>("http://192.168.1.104:55555");
         }
         public void Stop()
         {
