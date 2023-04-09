@@ -17,6 +17,8 @@ using Org.BouncyCastle.Bcpg;
 using System.Xml.Linq;
 using System.Data.SqlClient;
 using System.Collections;
+using Mysqlx;
+using System.Security.Cryptography;
 
 namespace App01
 {
@@ -25,6 +27,41 @@ namespace App01
         // Connect MySQL Database
         string datareturn;
         string connStr = "server=127.0.0.1;user=root;database=demohmiconnectpc1;port=3306;password=0546";
+
+        // check if token is valid
+        private bool IsValidToken(string token)
+        {
+            try
+            {
+                string checktoken = "select * from tokenapi where mac=@mac";
+                DataTable dt = new DataTable();
+                MySqlDataReader myReaderr;
+                using (MySqlConnection mycon = new MySqlConnection(connStr))
+                {
+                    mycon.Open();
+                    using (MySqlCommand myCommand = new MySqlCommand(checktoken, mycon))
+                    {
+                        myCommand.Parameters.AddWithValue("@mac", token);
+                        myReaderr = myCommand.ExecuteReader();
+                        dt.Load(myReaderr);
+                        myReaderr.Close();
+                        mycon.Close();
+                    }
+                }
+                if (dt.Rows.Count > 0)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch
+            {
+                return false;
+            }
+        }
 
         // check table exists
         public bool IsTableExists(string tableName)
@@ -93,10 +130,15 @@ namespace App01
         //}
         */
 
-        // GET api/webapi/name/datefrom/dateto
-        //[Route("api/{controller}/{name}/{datetfrom}/{dateto}")]
-        public string GetDate(string name, string datefrom, string dateto)
+        // GET api/webapi/name/datefrom/dateto/token
+        [Route("api/{controller}/{name}/{datetfrom}/{dateto}/{token}")]
+        public string GetDate(string name, string datefrom, string dateto, string token)
         {
+            // check if token is valid
+            if (!IsValidToken(token))
+            {
+                return "Wrong or invalid Token. Please check and try again!";
+            }
             // check if table exists
             if (!IsTableExists(name))
             {
@@ -105,7 +147,6 @@ namespace App01
 
             // continues to execute
             string query = "select * from " + $"{name}" + " where DateTime between " + $"{datefrom}" + "and " + $"{dateto}" + " order by DateTime desc";
-            //string query1 = "select * from " + $"{name}" + " where DateTime between " + $"{datefrom}" + "and " + $"{dateto}" + " order by DateTime desc";
             DataTable table = new DataTable();
             MySqlDataReader myReader;
             using (MySqlConnection mycon = new MySqlConnection(connStr))
@@ -156,33 +197,79 @@ namespace App01
         }
 
         // POST api/webapi/username/password/mac
-        [Route("api/{controller}/{name}/{username}/{password}")]
-        public string GetData(string name, string username, string password)
+        [Route("api/{controller}/{username}/{password}/{mac}")]
+        public string GetData(string username, string password, string mac)
         {
-            // check if table exists
-            if (!IsTableExists(name))
-            {
-                return "Table does not exist in the Database.";
-            }
-            // Insert data into first table
-            string query = "INSERT INTO " + $"{name}" + " (username, password) VALUES ($'{username}', $'{password}')";
-            // INSERT INTO usernpass (username, password) VALUES('user2', 'pass123'); this is query use in MySQL
-            DataTable table = new DataTable();
-            MySqlDataReader myReader;
-            using (MySqlConnection mycon = new MySqlConnection(connStr))
-            {
-                mycon.Open();
-                using (MySqlCommand myCommand = new MySqlCommand(query, mycon))
-                {
-                    myReader = myCommand.ExecuteReader();
-                    table.Load(myReader);
-                    myReader.Close();
-                    mycon.Close();
-                }
-            }
-            return datareturn;
-        }
 
+            // username and password import from api link
+            string usernameFromApiLink = username;
+            string passwordFromApiLink = password;
+
+            // create a MySqlConnection object and open the database 
+            MySqlConnection connection = new MySqlConnection(connStr);
+            connection.Open();
+
+            // construct the SQL query and execute it
+            string query = "SELECT password FROM usernpass WHERE username = @username";
+            MySqlCommand command = new MySqlCommand(query, connection);
+            command.Parameters.AddWithValue("@username", usernameFromApiLink);
+            string passwordFromDatabase = (string)command.ExecuteScalar();
+            connection.Close();
+
+            // Compare the passwords
+            bool passwordsMatch = string.Equals(passwordFromDatabase, passwordFromApiLink);
+            if(passwordsMatch == true)
+            {
+                // Convert a MAC address string to a byte array
+                byte[] macBytes = Encoding.UTF8.GetBytes(mac);
+
+                // Initialize an MD5 encryption object
+                MD5 md5 = MD5.Create();
+
+                // Encrypt the byte array of a MAC address using MD5
+                byte[] hashedBytes = md5.ComputeHash(macBytes);
+
+                // Convert the encrypted byte array to a hexadecimal string
+                StringBuilder stringBuilder = new StringBuilder();
+                for (int i = 0; i < hashedBytes.Length; i++)
+                {
+                    stringBuilder.Append(hashedBytes[i].ToString("X2")); // X2 to convert bytes into a hexadecimal string with 2 characters.
+                }
+                connection.Open();
+                // The MAC address has been encrypted
+                string hashedMac = stringBuilder.ToString();
+                // write token to database
+                try
+                {
+                    string hashedMacQuery = "INSERT INTO tokenapi (datetime, mac) VALUES (NOW(), " + $"'{hashedMac}'" + ")";
+                    DataTable table = new DataTable();
+                    MySqlDataReader myReader;
+                    using (MySqlConnection mycon = new MySqlConnection(connStr))
+                    {
+                        mycon.Open();
+                        using (MySqlCommand myCommand = new MySqlCommand(hashedMacQuery, mycon))
+                        {
+                            myReader = myCommand.ExecuteReader();
+                            table.Load(myReader);
+                            myReader.Close();
+                            mycon.Close();
+                        }
+
+                    }
+                }
+                catch(Exception error) 
+                {
+                    return error.Message.ToString();
+                }
+                connection.Close();
+                return hashedMac;
+            }
+            else
+            {
+                return "Please check your username, password and try again.";
+            }
+        }
+        // If you want to create additional routes, create them from here.
         // POST api/webapi/mac
         [Route("api/{controller}/{username}/{mac}")]
         public string GetMacc(string mac, string username)
@@ -191,7 +278,6 @@ namespace App01
             {
                 // Insert data into second table
                 string query = "INSERT INTO tokenapi (datetime, mac, username) VALUES (NOW(), " + $"'{mac}'" + ", " + $"'{username}'" + ")";
-                // INSERT INTO tokenapi (datetime, mac, username) VALUES(NOW(), 'a04c0c0a4a60', 'user2'); this is query use in MySQL
                 DataTable table = new DataTable();
                 MySqlDataReader myReader;
                 using (MySqlConnection mycon = new MySqlConnection(connStr))
@@ -211,8 +297,6 @@ namespace App01
             {
                 return (ex.Message);
             }
-            
-            
         }
 
         // PUT api/webapi/1

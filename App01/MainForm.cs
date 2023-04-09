@@ -61,7 +61,7 @@ namespace App01
             // Clear the RichTextBox
             dtView.Clear();
 
-            // Lấy chuỗi MAC đầu tiên của pc
+            // Get the first MAC address of the PC
             string mac = "";
             foreach (NetworkInterface nic in NetworkInterface.GetAllNetworkInterfaces())
             {
@@ -70,34 +70,34 @@ namespace App01
                     if (nic.GetPhysicalAddress().ToString() != "")
                     {
                         mac = nic.GetPhysicalAddress().ToString();
-                        break; // Thoát vòng lặp sau khi lấy được MAC đầu tiên
+                        break; // Exit the loop after getting the first MAC address
                     }
                 }
             }
 
-            // Chuyển chuỗi MAC thành mảng byte
+            // Convert a MAC address string to a byte array
             byte[] macBytes = Encoding.UTF8.GetBytes(mac);
 
-            // Khởi tạo đối tượng mã hóa MD5
+            // Initialize an MD5 encryption object
             MD5 md5 = MD5.Create();
 
-            // Mã hóa mảng byte của chuỗi MAC bằng MD5
+            // Encrypt the byte array of a MAC address using MD5
             byte[] hashedBytes = md5.ComputeHash(macBytes);
 
-            // Chuyển mảng byte mã hóa thành chuỗi hexa
+            // Convert the encrypted byte array to a hexadecimal string
             StringBuilder stringBuilder = new StringBuilder();
             for (int i = 0; i < hashedBytes.Length; i++)
             {
-                stringBuilder.Append(hashedBytes[i].ToString("X2")); // X2 để chuyển byte thành chuỗi hexa có 2 ký tự
+                stringBuilder.Append(hashedBytes[i].ToString("X2")); // X2 to convert bytes into a hexadecimal string with 2 characters.
             }
 
-            // Chuỗi MAC đã được mã hóa
+            // The MAC address has been encrypted
             string hashedMac = stringBuilder.ToString();
 
-            // Hiển thị chuỗi MAC đã được mã hóa trong RichTextBox
+            // Display the encrypted MAC address in a RichTextBox
             dtView.AppendText("Hashed MAC Address: " + hashedMac + Environment.NewLine);
 
-            // Hiển thị chuỗi MAC trong dtView
+            // Display the MAC address in the dtView
             dtView.AppendText("MAC Address: " + mac + Environment.NewLine);
         }
     }

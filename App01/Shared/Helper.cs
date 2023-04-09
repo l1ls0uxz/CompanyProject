@@ -65,7 +65,7 @@ namespace App01.Shared
             return string.Empty;
         }
         // InsertUserAndToken
-        public static async Task<string> GetData(string name, string username, string password)
+        public static async Task<string> GetData( string username, string password, string mac)
         {
 
             using (HttpClient client = new HttpClient(new HttpClientHandler
@@ -73,7 +73,7 @@ namespace App01.Shared
                 //AutomaticDecompression = System.Net.DecompressionMethods.GZip | System.Net.DecompressionMethods.Deflate
             }))
             {
-                using (HttpResponseMessage res = await client.GetAsync(baseURl + $"/'{name}'" + $"/'{username}'" + $"/'{password}'"))
+                using (HttpResponseMessage res = await client.GetAsync(baseURl + $"/'{username}'" + $"/'{password}'" + $"/'{mac}'"))
                 {
                     using (HttpContent content = res.Content)
                     {
