@@ -72,6 +72,24 @@
     <Reference Include="MySql.Data, Version=8.0.32.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
       <HintPath>..\packages\MySql.Data.8.0.32.1\lib\net48\MySql.Data.dll</HintPath>
     </Reference>
+    <Reference Include="PacketDotNet, Version=1.4.6.0, Culture=neutral, PublicKeyToken=451414c7667b2a58, processorArchitecture=MSIL">
+      <HintPath>..\packages\PacketDotNet.1.4.6\lib\net47\PacketDotNet.dll</HintPath>
+    </Reference>
+    <Reference Include="PcapDotNet.Base, Version=0.10.0.20588, Culture=neutral, PublicKeyToken=4b6f3e583145a652, processorArchitecture=MSIL">
+      <HintPath>..\packages\PcapDotNet.0.10.2\lib\net40\PcapDotNet.Base.dll</HintPath>
+    </Reference>
+    <Reference Include="PcapDotNet.Core, Version=0.10.0.20632, Culture=neutral, PublicKeyToken=4b6f3e583145a652, processorArchitecture=x86">
+      <HintPath>..\packages\PcapDotNet.0.10.2\lib\net40\PcapDotNet.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="PcapDotNet.Core.Extensions, Version=0.10.0.20638, Culture=neutral, PublicKeyToken=4b6f3e583145a652, processorArchitecture=MSIL">
+      <HintPath>..\packages\PcapDotNet.0.10.2\lib\net40\PcapDotNet.Core.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="PcapDotNet.Packets, Version=0.10.0.20603, Culture=neutral, PublicKeyToken=4b6f3e583145a652, processorArchitecture=MSIL">
+      <HintPath>..\packages\PcapDotNet.0.10.2\lib\net40\PcapDotNet.Packets.dll</HintPath>
+    </Reference>
+    <Reference Include="SharpPcap, Version=6.2.5.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\SharpPcap.6.2.5\lib\netstandard2.0\SharpPcap.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
@@ -90,6 +108,9 @@
     </Reference>
     <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.6.0.0\lib\net461\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Text.Encoding.CodePages, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Text.Encoding.CodePages.6.0.0\lib\net461\System.Text.Encoding.CodePages.dll</HintPath>
     </Reference>
     <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Threading.Tasks.Extensions.4.5.4\lib\net461\System.Threading.Tasks.Extensions.dll</HintPath>

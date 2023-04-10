@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Net;
 using System.Net.NetworkInformation;
+using SharpPcap;
 
 namespace TestForm
 {
@@ -28,31 +29,22 @@ namespace TestForm
 
         private void button1_Click(object sender, EventArgs e)
         {
-            IPAddress ipAddress = IPAddress.Parse("192.168.1.91"); // Địa chỉ IP của người dùng
-            PhysicalAddress physicalAddress = null;
+            // Lấy địa chỉ MAC của máy khách
+            string macAddress = string.Empty;
+            IPGlobalProperties properties = IPGlobalProperties.GetIPGlobalProperties();
+            NetworkInterface[] interfaces = NetworkInterface.GetAllNetworkInterfaces();
 
-            foreach (NetworkInterface nic in NetworkInterface.GetAllNetworkInterfaces())
+            foreach (NetworkInterface nic in interfaces)
             {
-                IPInterfaceProperties properties = nic.GetIPProperties();
-                foreach (UnicastIPAddressInformation ip in properties.UnicastAddresses)
+                if (nic.NetworkInterfaceType == NetworkInterfaceType.Ethernet ||
+                    nic.NetworkInterfaceType == NetworkInterfaceType.Wireless80211)
                 {
-                    if (ip.Address.Equals(ipAddress))
+                    if (nic.OperationalStatus == OperationalStatus.Up)
                     {
-                        physicalAddress = nic.GetPhysicalAddress();
+                        macAddress = nic.GetPhysicalAddress().ToString();
                         break;
                     }
                 }
-                if (physicalAddress != null) break;
-            }
-
-            if (physicalAddress != null)
-            {
-                string macAddress = BitConverter.ToString(physicalAddress.GetAddressBytes());
-                richTextBox1.AppendText("MAC Address: " + macAddress + Environment.NewLine);
-            }
-            else
-            {
-                richTextBox1.AppendText("MAC Address not found." + Environment.NewLine);
             }
         }
     }
