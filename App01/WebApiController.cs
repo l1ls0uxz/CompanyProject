@@ -19,6 +19,8 @@ using System.Data.SqlClient;
 using System.Collections;
 using Mysqlx;
 using System.Security.Cryptography;
+using System.Diagnostics;
+using System.Text.RegularExpressions;
 
 namespace App01
 {
@@ -200,73 +202,95 @@ namespace App01
         [Route("api/{controller}/{username}/{password}/{mac}")]
         public string GetData(string username, string password, string mac)
         {
-
-            // username and password import from api link
-            string usernameFromApiLink = username;
-            string passwordFromApiLink = password;
-
-            // create a MySqlConnection object and open the database 
-            MySqlConnection connection = new MySqlConnection(connStr);
-            connection.Open();
-
-            // construct the SQL query and execute it
-            string query = "SELECT password FROM usernpass WHERE username = @username";
-            MySqlCommand command = new MySqlCommand(query, connection);
-            command.Parameters.AddWithValue("@username", usernameFromApiLink);
-            string passwordFromDatabase = (string)command.ExecuteScalar();
-            connection.Close();
-
-            // Compare the passwords
-            bool passwordsMatch = string.Equals(passwordFromDatabase, passwordFromApiLink);
-            if(passwordsMatch == true)
+            // Scan for MAC addresses using the arp command
+            Process process = new Process();
+            process.StartInfo.FileName = "arp";
+            process.StartInfo.Arguments = "-a";
+            process.StartInfo.UseShellExecute = false;
+            process.StartInfo.RedirectStandardOutput = true;
+            process.Start();
+            string output = process.StandardOutput.ReadToEnd();
+            process.WaitForExit();
+            List<string> macAddresses = new List<string>();
+            foreach (Match match in Regex.Matches(output, @"([0-9A-Fa-f]{2}[:-]){5}([0-9A-Fa-f]{2})"))
             {
-                // Convert a MAC address string to a byte array
-                byte[] macBytes = Encoding.UTF8.GetBytes(mac);
+                macAddresses.Add(match.Value);
+            }
 
-                // Initialize an MD5 encryption object
-                MD5 md5 = MD5.Create();
+            // Compare the MAC addresses obtained from the arp command with the MAC address in the API link
+            if (macAddresses.Contains(mac))
+            {
+                // username and password import from api link
+                string usernameFromApiLink = username;
+                string passwordFromApiLink = password;
 
-                // Encrypt the byte array of a MAC address using MD5
-                byte[] hashedBytes = md5.ComputeHash(macBytes);
-
-                // Convert the encrypted byte array to a hexadecimal string
-                StringBuilder stringBuilder = new StringBuilder();
-                for (int i = 0; i < hashedBytes.Length; i++)
-                {
-                    stringBuilder.Append(hashedBytes[i].ToString("X2")); // X2 to convert bytes into a hexadecimal string with 2 characters.
-                }
+                // create a MySqlConnection object and open the database 
+                MySqlConnection connection = new MySqlConnection(connStr);
                 connection.Open();
-                // The MAC address has been encrypted
-                string hashedMac = stringBuilder.ToString();
-                // write token to database
-                try
-                {
-                    string hashedMacQuery = "INSERT INTO tokenapi (datetime, mac) VALUES (NOW(), " + $"'{hashedMac}'" + ")";
-                    DataTable table = new DataTable();
-                    MySqlDataReader myReader;
-                    using (MySqlConnection mycon = new MySqlConnection(connStr))
-                    {
-                        mycon.Open();
-                        using (MySqlCommand myCommand = new MySqlCommand(hashedMacQuery, mycon))
-                        {
-                            myReader = myCommand.ExecuteReader();
-                            table.Load(myReader);
-                            myReader.Close();
-                            mycon.Close();
-                        }
 
-                    }
-                }
-                catch(Exception error) 
-                {
-                    return error.Message.ToString();
-                }
+                // construct the SQL query and execute it
+                string query = "SELECT password FROM usernpass WHERE username = @username";
+                MySqlCommand command = new MySqlCommand(query, connection);
+                command.Parameters.AddWithValue("@username", usernameFromApiLink);
+                string passwordFromDatabase = (string)command.ExecuteScalar();
                 connection.Close();
-                return hashedMac;
+
+                // Compare the passwords
+                bool passwordsMatch = string.Equals(passwordFromDatabase, passwordFromApiLink);
+                if (passwordsMatch == true)
+                {
+                    // Convert a MAC address string to a byte array
+                    byte[] macBytes = Encoding.UTF8.GetBytes(mac);
+
+                    // Initialize an MD5 encryption object
+                    MD5 md5 = MD5.Create();
+
+                    // Encrypt the byte array of a MAC address using MD5
+                    byte[] hashedBytes = md5.ComputeHash(macBytes);
+
+                    // Convert the encrypted byte array to a hexadecimal string
+                    StringBuilder stringBuilder = new StringBuilder();
+                    for (int i = 0; i < hashedBytes.Length; i++)
+                    {
+                        stringBuilder.Append(hashedBytes[i].ToString("X2")); // X2 to convert bytes into a hexadecimal string with 2 characters.
+                    }
+                    connection.Open();
+                    // The MAC address has been encrypted
+                    string hashedMac = stringBuilder.ToString();
+                    // write token to database
+                    try
+                    {
+                        string hashedMacQuery = "INSERT INTO tokenapi (datetime, mac) VALUES (NOW(), " + $"'{hashedMac}'" + ")";
+                        DataTable table = new DataTable();
+                        MySqlDataReader myReader;
+                        using (MySqlConnection mycon = new MySqlConnection(connStr))
+                        {
+                            mycon.Open();
+                            using (MySqlCommand myCommand = new MySqlCommand(hashedMacQuery, mycon))
+                            {
+                                myReader = myCommand.ExecuteReader();
+                                table.Load(myReader);
+                                myReader.Close();
+                                mycon.Close();
+                            }
+
+                        }
+                    }
+                    catch (Exception error)
+                    {
+                        return error.Message.ToString();
+                    }
+                    connection.Close();
+                    return hashedMac;
+                }
+                else
+                {
+                    return "Please check your username, password and try again.";
+                }
             }
             else
             {
-                return "Please check your username, password and try again.";
+                return "MAC address not found in API link or you use a fake MAC address?. Import a real MAC and try again.";
             }
         }
         // If you want to create additional routes, create them from here.
