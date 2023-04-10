@@ -290,7 +290,7 @@ namespace App01
             }
             else
             {
-                return "MAC address not found in API link or you use a fake MAC address?. Import a real MAC and try again.";
+                return "MAC address not found in API link or you use a fake MAC address?. Import your real MAC and try again. Example Format: 'e0-bb-9e-75-7c-b3' or 'e0:bb:9e:75:7c:b3'";
             }
         }
         // If you want to create additional routes, create them from here.
