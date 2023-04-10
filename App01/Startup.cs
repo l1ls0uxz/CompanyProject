@@ -31,31 +31,21 @@ namespace App01
             var config = new HttpConfiguration();
             config.Routes.MapHttpRoute(
                 name: "Api-1",
-                routeTemplate: "api/{controller}/",
-                defaults: new { id = RouteParameter.Optional }
-               );
-            config.Routes.MapHttpRoute(
-                name: "Api-2",
-                routeTemplate: "api/{controller}/",
-                defaults: new { id = RouteParameter.Optional }
-             );
-            config.Routes.MapHttpRoute(
-                name: "Api-3",
                 routeTemplate: "api/{controller}/{name}/{datefrom}/{dateto}/{token}",   // this is the route is used in GetDate route
                 defaults: new { id = RouteParameter.Optional }
                 );
             config.Routes.MapHttpRoute(
-                name: "Api-4",
+                name: "Api-2",
                 routeTemplate: "api/{controller}/{ipAddress}",
                 defaults: new { controller = "MacAddress", ipAddress = RouteParameter.Optional } //controller = "MacAddress", ipAddress =
                 );
             config.Routes.MapHttpRoute(
-                name: "Api-5",
+                name: "Api-3",
                 routeTemplate: "api/{controller}/{username}/{password}/{mac}", // this is the route is used in GetMac route
                 defaults : new { id = RouteParameter.Optional }
                 );
             config.Routes.MapHttpRoute(
-                name: "Api-6",
+                name: "Api-4",
                 routeTemplate: "api/...",  // if u plan to build a new route, just build it here
                 defaults: new { id = RouteParameter.Optional }
                 );

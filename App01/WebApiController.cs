@@ -24,7 +24,7 @@ namespace App01
 {
     public class WebApiController : ApiController
     {
-        // Connect MySQL Database
+        /// Connect MySQL Database
         string datareturn;
         string connStr = "server=127.0.0.1;user=root;database=demohmiconnectpc1;port=3306;password=0546";
 
