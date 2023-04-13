@@ -38,10 +38,10 @@
             this.btnGET = new System.Windows.Forms.Button();
             this.dtView = new System.Windows.Forms.RichTextBox();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.btnMac = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.btnMac = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -155,6 +155,16 @@
             this.panel2.Size = new System.Drawing.Size(984, 71);
             this.panel2.TabIndex = 3;
             // 
+            // btnMac
+            // 
+            this.btnMac.Image = ((System.Drawing.Image)(resources.GetObject("btnMac.Image")));
+            this.btnMac.Location = new System.Drawing.Point(868, 4);
+            this.btnMac.Name = "btnMac";
+            this.btnMac.Size = new System.Drawing.Size(106, 64);
+            this.btnMac.TabIndex = 8;
+            this.btnMac.UseVisualStyleBackColor = true;
+            this.btnMac.Click += new System.EventHandler(this.btnMac_Click);
+            // 
             // label3
             // 
             this.label3.AutoSize = true;
@@ -184,16 +194,6 @@
             this.label1.Size = new System.Drawing.Size(55, 13);
             this.label1.TabIndex = 5;
             this.label1.Text = "Machine";
-            // 
-            // btnMac
-            // 
-            this.btnMac.Location = new System.Drawing.Point(868, 4);
-            this.btnMac.Name = "btnMac";
-            this.btnMac.Size = new System.Drawing.Size(106, 64);
-            this.btnMac.TabIndex = 8;
-            this.btnMac.Text = "GET MAC";
-            this.btnMac.UseVisualStyleBackColor = true;
-            this.btnMac.Click += new System.EventHandler(this.btnMac_Click);
             // 
             // MainForm
             // 
