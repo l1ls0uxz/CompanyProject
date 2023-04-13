@@ -13,7 +13,7 @@ namespace App01.Shared
     public static class Helper
     {
         // baseURl
-        private static readonly string baseURl = "http://192.168.1.104:55555/api/webapi";
+        private static readonly string baseURl = "http://192.168.1.12:55555/api/webapi";
         // GetDate
         public static async Task<string> GetDate(string name, string datefrom, string dateto)
         {
